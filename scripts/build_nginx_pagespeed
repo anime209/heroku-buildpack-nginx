@@ -52,8 +52,6 @@ echo "Downloading $psol_url"
     --with-http_gzip_static_module \
     --with-http_realip_module \
     --with-http_gunzip_module \
-    --with-http_gzip_static_module \
-    --with-http_ssl_module \
     --prefix=/tmp/nginx \
     --add-module=${temp_dir}/nginx-${NGINX_VERSION}/incubator-pagespeed-ngx-${NPS_VERSION}-stable \
     --add-module=${temp_dir}/nginx-${NGINX_VERSION}/nginx-uuid4-module-${UUID4_VERSION}
