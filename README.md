@@ -9,11 +9,14 @@ Some application servers (e.g. Ruby's Unicorn) halt progress when dealing with n
 ## Versions
 
 ### Heroku 16
-* NGINX Version: 1.9.5
+* NGINX Version: 1.18.0
+* PageSpeed Version: 1.13.35.2
 ### Heroku 18
 * NGINX Version: 1.18.0
+* PageSpeed Version: 1.13.35.2
 ### Heroku 20
 * NGINX Version: 1.18.0
+* PageSpeed Version: 1.13.35.2
 
 ## Requirements (Proxy Mode)
 
