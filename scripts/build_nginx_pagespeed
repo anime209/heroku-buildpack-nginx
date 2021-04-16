@@ -37,7 +37,7 @@ echo "Downloading $zlib_url"
 echo "Downloading $uuid4_url"
 (cd nginx-${NGINX_VERSION} && curl -L $uuid4_url | tar xvz )
 
-echo "Downloading $brotli_url"
+echo "Downloading ngx_brotli"
 (cd nginx-${NGINX_VERSION} && git clone --recursive https://github.com/google/ngx_brotli.git )
 
 echo "Downloading $nginx_page_speed_url"
