@@ -56,9 +56,9 @@ echo "Downloading $psol_url"
     --with-http_realip_module \
     --with-http_gunzip_module \
     --prefix=/tmp/nginx \
-    --add-module=${temp_dir}/nginx-${NGINX_VERSION}/incubator-pagespeed-ngx-${NPS_VERSION}-stable \
-    --add-module=${temp_dir}/nginx-${NGINX_VERSION}/ngx_brotli \
-    --add-module=${temp_dir}/nginx-${NGINX_VERSION}/nginx-uuid4-module-${UUID4_VERSION}
+    --add-module=incubator-pagespeed-ngx-${NPS_VERSION}-stable \
+    --add-module=ngx_brotli \
+    --add-module=nginx-uuid4-module-${UUID4_VERSION}
   make
   make install
 )
