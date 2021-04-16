@@ -37,6 +37,9 @@ echo "Downloading $zlib_url"
 echo "Downloading $uuid4_url"
 (cd nginx-${NGINX_VERSION} && curl -L $uuid4_url | tar xvz )
 
+echo "Downloading $brotli_url"
+(cd nginx-${NGINX_VERSION} && git clone --recursive https://github.com/google/ngx_brotli.git )
+
 echo "Downloading $nginx_page_speed_url"
 (cd nginx-${NGINX_VERSION} && curl --silent -L $nginx_page_speed_url | tar xvz )
 
@@ -54,6 +57,7 @@ echo "Downloading $psol_url"
     --with-http_gunzip_module \
     --prefix=/tmp/nginx \
     --add-module=${temp_dir}/nginx-${NGINX_VERSION}/incubator-pagespeed-ngx-${NPS_VERSION}-stable \
+    --add-module=${temp_dir}/nginx-${NGINX_VERSION}/ngx_brotli \
     --add-module=${temp_dir}/nginx-${NGINX_VERSION}/nginx-uuid4-module-${UUID4_VERSION}
   make
   make install
