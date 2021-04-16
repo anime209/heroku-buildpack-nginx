@@ -63,8 +63,6 @@ echo "Downloading $psol_url"
   make install
 )
 
-/tmp/nginx/sbin/nginx -V
-
 release_dir=$(mktemp -d /tmp/nginx.XXXXXXXXXX)
 
 cp /tmp/nginx/sbin/nginx $release_dir/nginx
