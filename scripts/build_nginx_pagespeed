@@ -7,15 +7,15 @@
 NGINX_VERSION=${NGINX_VERSION-1.18.0}
 NPS_VERSION=${NPS_VERSION-1.13.35.2}
 PCRE_VERSION=${PCRE_VERSION-8.44}
+HEADERS_MORE_VERSION=${HEADERS_MORE_VERSION-0.33}
 ZLIB_VERSION=${ZLIB_VERSION-1.2.11}
-UUID4_VERSION=${UUID4_VERSION-master}
 
 nginx_tarball_url=https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz
 pcre_tarball_url=https://ftp.pcre.org/pub/pcre/pcre-${PCRE_VERSION}.tar.gz
-uuid4_url=https://github.com/cybozu/nginx-uuid4-module/archive/${UUID4_VERSION}.tar.gz
 zlib_url=http://zlib.net/zlib-${ZLIB_VERSION}.tar.gz
 nginx_page_speed_url=https://github.com/apache/incubator-pagespeed-ngx/archive/v${NPS_VERSION}-stable.tar.gz
 psol_url=https://dl.google.com/dl/page-speed/psol/${NPS_VERSION}-x64.tar.gz
+headers_more_nginx_module_url=https://github.com/openresty/headers-more-nginx-module/archive/v${HEADERS_MORE_VERSION}.tar.gz
 
 temp_dir=$(mktemp -d /tmp/nginx.XXXXXXXXXX)
 
@@ -31,11 +31,11 @@ curl -L $nginx_tarball_url | tar xzv
 echo "Downloading $pcre_tarball_url"
 (cd nginx-${NGINX_VERSION} && curl -L $pcre_tarball_url | tar xvz )
 
+echo "Downloading $headers_more_nginx_module_url"
+(cd nginx-${NGINX_VERSION} && curl -L $headers_more_nginx_module_url | tar xvz )
+
 echo "Downloading $zlib_url"
 (cd nginx-${NGINX_VERSION} && curl -L $zlib_url | tar xvz )
-
-echo "Downloading $uuid4_url"
-(cd nginx-${NGINX_VERSION} && curl -L $uuid4_url | tar xvz )
 
 echo "Downloading ngx_brotli"
 (cd nginx-${NGINX_VERSION} && git clone --recursive https://github.com/google/ngx_brotli.git )
@@ -57,8 +57,7 @@ echo "Downloading $psol_url"
     --with-http_gunzip_module \
     --prefix=/tmp/nginx \
     --add-module=incubator-pagespeed-ngx-${NPS_VERSION}-stable \
-    --add-module=ngx_brotli \
-    --add-module=nginx-uuid4-module-${UUID4_VERSION}
+    --add-module=headers-more-nginx-module-${HEADERS_MORE_VERSION}
   make
   make install
 )
