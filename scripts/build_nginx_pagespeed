@@ -34,6 +34,10 @@ echo "Downloading $pcre_tarball_url"
 echo "Downloading $headers_more_nginx_module_url"
 (cd nginx-${NGINX_VERSION} && curl -L $headers_more_nginx_module_url | tar xvz )
 
+(cd nginx-${NGINX_VERSION} && curl -L https://github.com/openresty/set-misc-nginx-module/archive/refs/tags/v0.32.tar.gz | tar xvz )
+(cd nginx-${NGINX_VERSION} && curl -L https://github.com/vision5/ngx_devel_kit/archive/refs/tags/v0.3.1.tar.gz | tar xvz )
+(cd nginx-${NGINX_VERSION} && curl -L https://github.com/FRiCKLE/ngx_cache_purge/archive/refs/tags/2.3.tar.gz | tar xvz )
+
 echo "Downloading $zlib_url"
 (cd nginx-${NGINX_VERSION} && curl -L $zlib_url | tar xvz )
 
@@ -57,6 +61,9 @@ echo "Downloading $psol_url"
     --with-http_gunzip_module \
     --prefix=/tmp/nginx \
     --add-module=incubator-pagespeed-ngx-${NPS_VERSION}-stable \
+    --add-module=ngx_devel_kit-0.3.1 \
+    --add-module=set-misc-nginx-module-0.32 \
+    --add-module=ngx_cache_purge-2.3 \
     --add-module=headers-more-nginx-module-${HEADERS_MORE_VERSION}
   make
   make install
